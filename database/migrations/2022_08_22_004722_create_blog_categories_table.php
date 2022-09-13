@@ -14,11 +14,15 @@ class CreateBlogCategoriesTable extends Migration
     public function up()
     {
         Schema::create('blog_categories', function (Blueprint $table) {
-            $table->id(); //ai сам ставит
-            $table->integer('parent_id')->unsigned()->default(0);
+            $table->bigIncrements('id'); //ai сам ставит
             $table->integer('parent_id')->unsigned()->default(0);
 
+            $table->string('slug')->unique();
+            $table->string('title');
+            $table->text('description')->nullable(); //необязательное поле
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
