@@ -3,8 +3,6 @@
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\RestTestController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::resource('rest', 'RestTestController')->names('restTest');
+Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
+    Route::resource('posts', PostController::class)->names('blog.posts');
+});
  
-Route::resource('rest', RestTestController::class);
+Route::resource('rest', App\Http\Controllers\RestTestController::class);

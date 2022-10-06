@@ -16,6 +16,9 @@ class PostController extends BaseController
     public function index()
     {
         $items = BlogPost::all();//прямой запрос к модели, так делать не нужно!
+        // $items = BlogPost::withTrashed()->get();//с удаленными
+
+        // dd($items->first());
 
         return view('blog.posts.index', compact('items')); //путь до вьюхи по папкам
     }
